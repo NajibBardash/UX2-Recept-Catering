@@ -53,6 +53,7 @@ const app = {
         </header>
 
         <main class="content">
+          <h2>SNABB FILTRERING</h2>
           <chip-section
             v-for="(section, index) in sections"
             :key="index"

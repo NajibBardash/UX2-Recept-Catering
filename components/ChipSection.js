@@ -26,8 +26,7 @@ export default {
             v-for="(chip, index) in chips"
             :key="index"
             :class="['chip', extraClass]"
-            @click="activateChip"
-          >
+            @click="activateChip">
             {{ chip }}
           </button>
         </div>
