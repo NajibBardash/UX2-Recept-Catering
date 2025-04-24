@@ -1,4 +1,5 @@
 import ChipSection from './components/ChipSection.js'
+import RangeSection from './components/RangeSection.js';
 
 const app = {
   data() {
@@ -35,7 +36,13 @@ const app = {
           chips: ['Under 1 timme', 'Under 12 timmar', 'Under 24 timmar', 'Under 36 timmar'],
           sectionClass: 'preptime-section'
         }
-      ]
+      ],
+
+      range: {
+        title: 'Pris per portion',
+        sectionClass: 'range-section'
+      }
+
     }
   },
 
@@ -62,6 +69,11 @@ const app = {
             :section-class="section.sectionClass"
             :extra-class="section.extraClass"
           />
+
+          <range-section
+            :title="range.title"
+            :section-class="range.sectionClass"
+          />
         </main>
       </div>
   `
@@ -70,6 +82,7 @@ const app = {
 
 const vueApp = Vue.createApp(app);
 
-vueApp.component('chip-section', ChipSection)
+vueApp.component('chip-section', ChipSection);
+vueApp.component('range-section', RangeSection);
 
 vueApp.mount("#app");

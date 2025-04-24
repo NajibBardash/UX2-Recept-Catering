@@ -1,94 +1,157 @@
 body {
-    margin: 0;
-    background-color: #181818;
+  margin: 0;
+  background-color: #181818;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 800px;
+  padding: 2rem 0;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 600px;
+  background-color: #dee7d9;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-height: 800px;
+}
+
+.topbar {
+  background-color: #293234;
+  height: 100px;
+  padding: 1rem;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #b9cd9f;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  margin: 22px 22px 0 22px;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-bar button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #2f3a2f;
+  cursor: pointer;
+}
+
+.content {
+  padding: 2rem 2rem;
+  font-size: 0.9rem;
+}
+
+.content h2 {
+  font-size: 1rem;
+}
+
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  padding: 0.4rem 0.9rem;
+  background-color: #b9cd9f;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.chip:hover {
+  background-color: #a5b88c;
+}
+
+.chip.active {
+  background-color: #2f3a2f;
+  color: white;
+}
+
+.allergy.active {
+  background-color: #CC604F;
+}
+
+.range-section {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  #min-max {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 800px;
-    padding: 2rem 0;
+    justify-content: space-between;
   }
-  
-  .app-container {
-    width: 100%;
-    max-width: 600px; 
-    background-color: #dee7d9;
-    border-radius: 0;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);min-height: 800px;
-    min-height: 800px;
-  }
-  
-  .topbar {
-    background-color: #293234;
-    height: 100px;
-    padding: 1rem;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-  }
-  
-  .search-bar {
+
+  .range-slider {
     display: flex;
-    align-items: center;
-    background-color: #b9cd9f;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    margin: 22px 22px 0 22px;
-  }
-  
-  .search-bar input {
-    flex-grow: 1;
-    border: none;
-    background: transparent;
-    font-size: 1rem;
-    outline: none;
-  }
-  
-  .search-bar button {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: #2f3a2f;
-    cursor: pointer;
-  }
-  
-  .content {
-    padding: 2rem 2rem;
-    font-size: 0.9rem;
+    position: relative;
+    height: 36px;
+
+    .slider-track {
+      position: absolute;
+      background-color: #ccc;
+      height: 2px;
+      top: 15px;
+      left: 0;
+      right: 0;
+      border-radius: 9px;
+    }
+
+    .slider-range {
+      position: absolute;
+      background-color: #2f3a2f;
+      height: 5px;
+      top: 15px;
+      border-radius: 999px;
+    }
+
+    input[type="range"] {
+      position: absolute;
+      width: 100%;
+      pointer-events: none;
+      appearance: none;
+      background: transparent;
+      top: 0;
+      height: 36px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      pointer-events: auto;
+      appearance: none;
+      position: relative;
+      top: -2px;
+      left: -2px;
+      height: 20px;
+      width: 20px;
+      background: #293234;
+      border-radius: 50%;
+      cursor: pointer;
+    }
   }
 
-  .content h2 {
-    font-size: 1rem;
-  }
-
-  .chip-container {
+  #price-spread {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    justify-content: space-between;
   }
-  
-  .chip {
-    padding: 0.4rem 0.9rem;
-    background-color: #b9cd9f;
-    border: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 999px; 
-    transition: background-color 0.2s, color 0.2s;
-  }
-  
-  .chip:hover {
-    background-color: #a5b88c;
-  }
-
-  .chip.active {
-    background-color: #2f3a2f;
-    color: white;
-  }
-
-  .allergy.active {
-    background-color: #CC604F;
-  }
-
-  
-  
+}
