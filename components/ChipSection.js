@@ -1,5 +1,4 @@
 export default {
-    name: 'ChipSection',
     props: {
         title: String,
         chips: Array,
