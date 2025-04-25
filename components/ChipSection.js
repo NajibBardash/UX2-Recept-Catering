@@ -1,33 +1,48 @@
+import Chip from "./Chip.js";
+
 export default {
+
+    components: {
+        'chip': Chip
+    },
+
     props: {
-        title: String,
+        header: String,
+        imageTooltip: String,
         chips: Array,
         sectionClass: String,
+        selectedChips: Array,
         extraClass: {
             type: String,
             default: ''
         }
     },
 
-    methods: {
-        activateChip(evt) {
-            const buttonElement = evt.target;
+    emits: ['chip-clicked'],
 
-            buttonElement.classList.toggle('active');
+    methods: {
+        isSelected(chipLabel) {
+            return this.selectedChips.some(c => c.label === chipLabel);
+        },
+
+        handleChipClick(chip, extraClass) {
+            this.$emit('chip-clicked', { label: chip, extraClass });
         }
     },
 
     template: `
       <section :class="sectionClass">
-        <h2>{{ title }}</h2>
+        <div class="section-header">
+            <h2>{{ header }}</h2>
+            <slot></slot>
+        </div>
         <div class="chip-container">
-          <button
-            v-for="(chip, index) in chips"
+          <chip v-for="(chip, index) in chips"
             :key="index"
-            :class="['chip', extraClass]"
-            @click="activateChip">
-            {{ chip }}
-          </button>
+            :label="chip"
+            :class="['chip', extraClass, isSelected(chip) ? 'active' : '']"
+            @click="handleChipClick(chip, extraClass)"
+          />
         </div>
       </section>
     `
