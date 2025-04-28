@@ -59,6 +59,15 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: .5rem;
+
+  .chip {
+    padding-right: 1.7rem;
+    border: 1px solid #293234;
+  }
+
+  .chip:hover {
+    border: 1px solid white;
+  }
 }
 
 .content {

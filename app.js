@@ -94,10 +94,15 @@ const app = {
           <div id="filter-container">
             <chip-button v-for="(chip, index) in selectedChips"
               :key="index"
-              :label="chip.label"
               :extra-class="[chip.extraClass, 'active']"
-            @click="toggleChipSelection(chip)"
-            />
+              @click="toggleChipSelection(chip)"
+              >
+              {{ chip.label }}
+              <img src="assets/close-chip-icon.png"
+                alt="remove" 
+                class="close-chip-icon"
+              >
+            </chip-button>
           </div>
         </header>
 

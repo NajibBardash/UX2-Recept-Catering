@@ -5,3 +5,11 @@
     top: 19px;
     left: 5px;
 }
+
+.close-chip-icon {
+    position: relative;
+    height: 12px;
+    width: 12px;
+    top: 1px;
+    left: 13px;
+}
