@@ -63,7 +63,6 @@ const app = {
         extraClass: 'search'
       },
 
-<<<<<<< HEAD
       recipes: [
         {
           header: 'Gräddstuvad pyttipanna',
@@ -85,13 +84,9 @@ const app = {
           profit: '54',
           chips: ['Vegetarisk', 'Glutenfri', 'Skandinaviskt']
         }
-      ]
-=======
-      },
+      ],
 
       searchText: '',
->>>>>>> main
-
     }
   },
 
@@ -109,7 +104,6 @@ const app = {
       this.toggleChipSelection(chip);
     },
 
-<<<<<<< HEAD
     toggleRecipes() {
       this.seeRecipes = !this.seeRecipes;
     },
@@ -117,21 +111,6 @@ const app = {
     toggleRecipeDetails() {
       this.seeRecipes = !this.seeRecipes;
       this.recipeDetails = !this.recipeDetails;
-    }
-  },
-
-  watch: {
-    seeRecipes(newValue) {
-      if (newValue) {
-        this.$nextTick(() => {
-          const recipeList = document.getElementById('recipe-list');
-          if (recipeList) {
-            this.numberOfRecipes = recipeList.children.length;
-          }
-        });
-=======
-    goToRecipes() {
-      this.seeRecipes = true;
     },
 
     addSearchTextAsChip() {
@@ -142,9 +121,21 @@ const app = {
       ) {
         this.selectedChips.push({ label: trimmedText, extraClass: 'search-chip' });
         this.searchText = '';
->>>>>>> main
       }
     }
+  },
+  
+  watch: {
+    seeRecipes(newValue) {
+      if (newValue) {
+        this.$nextTick(() => {
+          const recipeList = document.getElementById('recipe-list');
+          if (recipeList) {
+            this.numberOfRecipes = recipeList.children.length;
+          }
+        });
+      }
+    },
   },
 
   template: `
