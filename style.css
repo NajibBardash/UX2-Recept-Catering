@@ -185,6 +185,11 @@ body {
   justify-content: right;
 }
 
+.search-chip.active {
+  background-color: #CC604F;
+  color: white;
+}
+
 .recipe-view {
   margin: 3rem;
 

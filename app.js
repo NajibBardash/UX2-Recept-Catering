@@ -63,6 +63,7 @@ const app = {
         extraClass: 'search'
       },
 
+<<<<<<< HEAD
       recipes: [
         {
           header: 'Gräddstuvad pyttipanna',
@@ -85,6 +86,11 @@ const app = {
           chips: ['Vegetarisk', 'Glutenfri', 'Skandinaviskt']
         }
       ]
+=======
+      },
+
+      searchText: '',
+>>>>>>> main
 
     }
   },
@@ -103,6 +109,7 @@ const app = {
       this.toggleChipSelection(chip);
     },
 
+<<<<<<< HEAD
     toggleRecipes() {
       this.seeRecipes = !this.seeRecipes;
     },
@@ -122,6 +129,20 @@ const app = {
             this.numberOfRecipes = recipeList.children.length;
           }
         });
+=======
+    goToRecipes() {
+      this.seeRecipes = true;
+    },
+
+    addSearchTextAsChip() {
+      const trimmedText = this.searchText.trim();
+      if (
+        trimmedText.length > 0 &&
+        !this.selectedChips.some(chip => chip.label.toLowerCase() === trimmedText.toLowerCase())
+      ) {
+        this.selectedChips.push({ label: trimmedText, extraClass: 'search-chip' });
+        this.searchText = '';
+>>>>>>> main
       }
     }
   },
@@ -131,8 +152,15 @@ const app = {
 
         <header v-if="!recipeDetails" class="topBar">
           <div class="search-bar">
-            <input type="search" placeholder="Sökfilter" minlength="3" maxlength="20" />
-            <button>+</button>
+          <input
+            type="text"
+            placeholder="Sökfilter"
+            minlength="1"
+            maxlength="20"
+            v-model="searchText"
+           @keydown.enter="addSearchTextAsChip"
+            />
+              <button @click="addSearchTextAsChip">+</button>
           </div>
 
           <div id="filter-container">
