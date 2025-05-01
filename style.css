@@ -183,6 +183,10 @@ body {
   width: 100%;
   display: flex;
   justify-content: right;
+
+  .chip {
+    background-color: #49754B;
+  }
 }
 
 .search-chip.active {
