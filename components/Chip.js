@@ -2,10 +2,9 @@ export default {
     props: {
         label: {
             type: String,
-            required: true
         },
         extraClass: {
-            type: String,
+            type: [String, Array],
             default: ''
         }
     },

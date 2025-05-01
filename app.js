@@ -1,13 +1,17 @@
 import Chip from './components/Chip.js';
 import ChipSection from './components/ChipSection.js';
 import RangeSection from './components/RangeSection.js';
+import FilterButton from './components/FilterButton.js';
+import Recipe from './components/Recipe.js';
 
 const app = {
   data() {
     return {
       seeRecipes: false,
-      selectedChips: [],
+      recipeDetails: false,
+      numberOfRecipes: Number(0),
 
+      selectedChips: [],
 
       sections: [
         {
@@ -57,11 +61,32 @@ const app = {
       searchChip: {
         label: 'Sök recept',
         extraClass: 'search'
-
       },
 
-      searchText: '',
+      recipes: [
+        {
+          header: 'Gräddstuvad pyttipanna',
+          profit: '65',
+          chips: ['Vegetarisk', 'Glutenfri', 'Skandinaviskt']
+        },
+        {
+          header: 'Napolitansk Pizza',
+          profit: '65',
+          chips: ['Vegetarisk', '< 24 timmar>', 'Skandinaviskt']
+        },
+        {
+          header: 'Fänkålsrisotto',
+          profit: '54',
+          chips: ['Vegetarisk', 'Glutenfri', 'Skandinaviskt']
+        },
+        {
+          header: 'Vinkokta musslor',
+          profit: '54',
+          chips: ['Vegetarisk', 'Glutenfri', 'Skandinaviskt']
+        }
+      ],
 
+      searchText: '',
     }
   },
 
@@ -79,8 +104,13 @@ const app = {
       this.toggleChipSelection(chip);
     },
 
-    goToRecipes() {
-      this.seeRecipes = true;
+    toggleRecipes() {
+      this.seeRecipes = !this.seeRecipes;
+    },
+
+    toggleRecipeDetails() {
+      this.seeRecipes = !this.seeRecipes;
+      this.recipeDetails = !this.recipeDetails;
     },
 
     addSearchTextAsChip() {
@@ -94,11 +124,24 @@ const app = {
       }
     }
   },
+  
+  watch: {
+    seeRecipes(newValue) {
+      if (newValue) {
+        this.$nextTick(() => {
+          const recipeList = document.getElementById('recipe-list');
+          if (recipeList) {
+            this.numberOfRecipes = recipeList.children.length;
+          }
+        });
+      }
+    },
+  },
 
   template: `
       <div class="app-container">
 
-        <header class="topBar">
+        <header v-if="!recipeDetails" class="topBar">
           <div class="search-bar">
           <input
             type="text"
@@ -124,9 +167,15 @@ const app = {
               >
             </chip-button>
           </div>
+          <button v-if="seeRecipes" 
+            @click="toggleRecipes" 
+            class="return-button">
+            <img src="assets/close-arrow-icon.png" alt="close arrow" class="close-arrow-icon">
+            Tillbaka
+          </button>
         </header>
 
-        <main v-if="!seeRecipes" class="content">
+        <main v-if="!seeRecipes && !recipeDetails" class="content">
           <h2>SNABB FILTRERING</h2>
           <chip-section
             v-for="(section, index) in sections"
@@ -152,13 +201,48 @@ const app = {
           <div class="search-exec">
             <chip-button
               :extra-class="searchChip.extraClass"
-              @click="goToRecipes"
+              :label="searchChip.label"
+              @click="toggleRecipes"
             >
-              {{ searchChip.label }}
             </chip-button>
           </div>
 
         </main>
+
+        <section v-if="seeRecipes" class="recipe-view">
+          <div id="recipe-topbar">
+            <span>{{ numberOfRecipes }} recept</span>
+            <filter-button></filter-button>
+          </div>
+          <div id="recipe-list">
+            <recipe
+              v-for="(recipe, index) in recipes"
+              :key="index"
+              :header="recipe.header"
+              :profit="recipe.profit"
+              :chips="recipe.chips"
+              @click="toggleRecipeDetails">
+            </recipe>
+          </div>
+        </section>
+        <section v-if="recipeDetails" class="recipe-details-view">
+          <recipe
+            :header="recipes[0].header"
+            :profit="recipes[0].profit"
+            :chips="recipes[0].chips">
+            <p>
+              Pyttipanna med rostbiff, potatis och lök stuvas krämig i grädde och senap 
+              och serveras med stekt ägg och inlagda rödbetor. En klassisk husmanskost som aldrig 
+              slår fel!
+            </p>
+            <button 
+              @click="toggleRecipeDetails" 
+              class="return-button">
+              <img src="assets/close-arrow-icon.png" alt="close arrow" class="close-arrow-icon">
+              Tillbaka
+            </button>
+          </recipe>
+        </section>
       </div>
   `
 };
@@ -169,5 +253,7 @@ const vueApp = Vue.createApp(app);
 vueApp.component('chip-button', Chip);
 vueApp.component('chip-section', ChipSection);
 vueApp.component('range-section', RangeSection);
+vueApp.component('filter-button', FilterButton);
+vueApp.component('recipe', Recipe);
 
 vueApp.mount("#app");
