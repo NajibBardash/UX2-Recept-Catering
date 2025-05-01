@@ -184,3 +184,170 @@ body {
   display: flex;
   justify-content: right;
 }
+
+.recipe-view {
+  margin: 3rem;
+
+  #recipe-topbar {
+    display: flex;
+    justify-content: space-between;
+
+    .select-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .mirror {
+      position: absolute;
+      visibility: hidden;
+      white-space: nowrap;
+      font: inherit;
+      padding: 0;
+    }
+
+    .search-filter {
+      font-size: 95%;
+      color: #293234;
+      width: auto;
+      min-width: 50px;
+      border: 1.5px solid black;
+      border-radius: 20px;
+      padding: .25rem 0 .25rem 1rem;
+      appearance: none;
+    }
+  }
+}
+
+#recipe-list {
+  margin-top: 1rem;
+}
+
+.recipe {
+  background-color: #293234;
+  color: #E8F9EF;
+  display: flex;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+
+  .recipe-info {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+
+    .recipe-text {
+      flex: 1;
+      padding-left: 1.25rem;
+      font-size: 120%;
+
+      h2 {
+        padding-right: 8.5rem;
+      }
+    }
+
+    .recipe-icons {
+      flex: 1;
+      padding: 0 0 1rem 1rem;
+      align-content: end;
+    }
+  }
+
+  .recipe-filters {
+    flex: 1;
+    padding: 0 1rem 1rem 0;
+    font-size: 85%;
+    display: flex;
+    flex-direction: column;
+
+    .profit {
+      display: flex;
+      justify-content: right;
+      text-decoration: underline;
+    }
+
+    .recipe-chips {
+      margin-top: 1rem;
+      flex-direction: column;
+      text-align: right;
+
+      .chip {
+        background-color: #49754B;
+        margin-bottom: .4rem;
+        color: #E8F9EF;
+        font-size: 104%;
+        pointer-events: none;
+      }
+    }
+
+    .recipe-chips .chip:nth-child(2) {
+      background-color: #CC604F;
+    }
+  }
+}
+
+#recipe-list .recipe:nth-child(2) {
+
+  .recipe-filters {
+    .recipe-chips {
+      .chip {
+        background-color: #49754B;
+      }
+    }
+  }
+}
+
+.return-button {
+  color: white;
+  background-color: #293234;
+  border-style: none;
+  padding-left: .5rem;
+  margin-left: .5rem;
+}
+
+.return-button:hover {
+  color: rgb(185, 185, 185);
+}
+
+.recipe-details-view {
+  
+  .recipe {
+    margin: 2rem 3rem 0 3rem;
+
+    .recipe-info {
+  
+      .recipe-text {
+  
+        h2 {
+          padding-right: 8.5rem;
+          font-size: 180%;
+          margin: 1.25rem 0 0 .75rem;
+        }
+
+        p {
+          font-size: 79%;
+          margin: 1.25rem 0 0 .75rem;
+        }
+
+        button {
+          padding-left: .25rem;
+          margin: 1.25rem 0 2.25rem .75rem;
+
+        }
+      }
+  
+      .recipe-icons {
+        flex: 1;
+        padding: 0 0 2.25rem 1.25rem;
+        align-content: end;
+      }
+    }
+  
+    .recipe-filters {
+  
+      .recipe-chips {
+        height: 100%;
+        align-content: end;
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}
