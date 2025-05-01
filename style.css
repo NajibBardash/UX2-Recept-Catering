@@ -184,3 +184,8 @@ body {
   display: flex;
   justify-content: right;
 }
+
+.search-chip.active {
+  background-color: #CC604F;
+  color: white;
+}
