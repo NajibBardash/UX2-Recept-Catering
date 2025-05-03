@@ -87,6 +87,32 @@ const app = {
       ],
 
       searchText: '',
+
+      commonIngredients: [
+        { amount: '2 gul', item: 'lök' },
+        { amount: '4 msk', item: 'neutral olja' },
+        { amount: '600 gram', item: 'gram potatis' },
+        { amount: '400 gram', item: 'gram biff' },
+        { amount: '1/2 krm', item: 'malen peppar' },
+        { amount: '2 dl', item: 'vispgrädde' },
+        { amount: '2 msk', item: 'senap' },
+        { amount: '4 st', item: 'ägg' }
+      ],
+
+      showIngredients: false,
+
+      instructionsStep1: `Skala och finhacka löken och stek i olja i en stor stekpanna 
+      tills den mjuknar. Lägg löken åt sidan. Skär potatisen i små tärningar och 
+      stek i olja i en stor stekpanna på medelvärme tills den är gyllene och mjuk, 
+      ca 10 minuter.`,
+
+      instructionsStep2: `Skala och skär biffen i små bitar. Tillsätt till pannan med
+       olja och stek tills varmt. Tillsätt lök, grädde och senap och låt koka ihop ett
+        par minuter. Smaka av med salt och nymalen peppar.`,
+
+      instructionsStep3: `Stek äggen i en annan panna i oljan. Servera pytten toppad
+       med ägg, Apelsinpicklade rödbetor och persilja.`,
+
     }
   },
 
@@ -124,7 +150,7 @@ const app = {
       }
     }
   },
-  
+
   watch: {
     seeRecipes(newValue) {
       if (newValue) {
@@ -237,11 +263,36 @@ const app = {
             </p>
             <button 
               @click="toggleRecipeDetails" 
-              class="return-button">
-              <img src="assets/close-arrow-icon.png" alt="close arrow" class="close-arrow-icon">
-              Tillbaka
+            class="return-button">
+            <img src="assets/close-arrow-icon.png" alt="close arrow" class="close-arrow-icon">
+            Tillbaka
             </button>
           </recipe>
+
+          <button class="toggle-details" @click="showIngredients = !showIngredients">
+            {{ showIngredients ? 'Dölj ingredienser ▲' : 'Ingredienser ▼' }}
+          </button>
+        <div v-if="showIngredients" class="recipe-details">
+          <ul>
+        <li v-for="(ing, index) in commonIngredients" :key="index">
+      <strong>{{ ing.amount }}</strong> {{ ing.item }}
+        </li>
+          </ul>
+        </div>
+
+        <h3 class="instructions-heading">Gör så här</h3>
+
+<div class="instructions-box">
+  <p>{{ instructionsStep1 }}</p>
+</div>
+
+<div class="instructions-box">
+  <p>{{ instructionsStep2 }}</p>
+</div>
+
+<div class="instructions-box">
+  <p>{{ instructionsStep3 }}</p>
+</div>
         </section>
       </div>
   `
