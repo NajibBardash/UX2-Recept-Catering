@@ -101,17 +101,13 @@ const app = {
 
       showIngredients: false,
 
-      instructionsStep1: `Skala och finhacka löken och stek i olja i en stor stekpanna 
-      tills den mjuknar. Lägg löken åt sidan. Skär potatisen i små tärningar och 
-      stek i olja i en stor stekpanna på medelvärme tills den är gyllene och mjuk, 
-      ca 10 minuter.`,
+      instructionsStep1: "Skala och finhacka löken och stek i olja i en stor stekpanna tills den mjuknar. Lägg löken åt sidan. Skär potatisen i små tärningar och stek i olja i en stor stekpanna på medelvärme tills den är gyllene och mjuk, ca 10 minuter.",
 
-      instructionsStep2: `Skala och skär biffen i små bitar. Tillsätt till pannan med
-       olja och stek tills varmt. Tillsätt lök, grädde och senap och låt koka ihop ett
-        par minuter. Smaka av med salt och nymalen peppar.`,
+      instructionsStep2: "Skala och skär biffen i små bitar. Tillsätt till pannan med olja och stek tills varmt. Tillsätt lök, grädde och senap och låt koka ihop ett par minuter. Smaka av med salt och nymalen peppar.",
 
-      instructionsStep3: `Stek äggen i en annan panna i oljan. Servera pytten toppad
-       med ägg, Apelsinpicklade rödbetor och persilja.`,
+      instructionsStep3: "Stek äggen i en annan panna i oljan. Servera pytten toppad med ägg, Apelsinpicklade rödbetor och persilja.",
+
+      portionSpinner: 10
 
     }
   },
@@ -147,6 +143,18 @@ const app = {
       ) {
         this.selectedChips.push({ label: trimmedText, extraClass: 'search-chip' });
         this.searchText = '';
+      }
+    },
+
+    decreasePortion() {
+      if (this.portionSpinner > 1) {
+        this.portionSpinner --;
+      }
+    },
+
+    increasePortion() {
+      if (this.portionSpinner < 300) {
+        this.portionSpinner ++;
       }
     }
   },
@@ -263,36 +271,52 @@ const app = {
             </p>
             <button 
               @click="toggleRecipeDetails" 
-            class="return-button">
-            <img src="assets/close-arrow-icon.png" alt="close arrow" class="close-arrow-icon">
-            Tillbaka
+              class="return-button">
+              <img src="assets/close-arrow-icon.png" alt="close arrow" class="close-arrow-icon">
+              Tillbaka
             </button>
           </recipe>
 
+          <div class="recipe-variations">
+            <p>Går även att göra</p>
+            <img src="assets/recipe-variation-icons.png" alt="recipe variations" class="recipe-variations-icon">
+          </div>
+
+          <div class="portion-spinner-wrapper">
+            <button class="portion-button" @click="decreasePortion">-</button>
+            <input type="number" min="1" max="300" value="12" class="portion-spinner" v-model="portionSpinner">
+            <button class="portion-button" @click="increasePortion">+</button>
+            <span>portioner</span>
+          </div>
+
           <button class="toggle-details" @click="showIngredients = !showIngredients">
-            {{ showIngredients ? 'Dölj ingredienser ▲' : 'Ingredienser ▼' }}
+            <img v-if="!showIngredients" src="assets/down-arrow-white-icon.png" alt="down arrow" class="details-arrow-down">
+            <img v-else src="assets/up-arrow-white-icon.png" alt="down arrow" class="details-arrow-up">
+            {{ showIngredients ? 'Dölj ingredienser' : 'Ingredienser' }}
           </button>
-        <div v-if="showIngredients" class="recipe-details">
-          <ul>
-        <li v-for="(ing, index) in commonIngredients" :key="index">
-      <strong>{{ ing.amount }}</strong> {{ ing.item }}
-        </li>
-          </ul>
-        </div>
+          <div v-if="showIngredients" class="recipe-details">
+            <ul>
+              <li v-for="(ing, index) in commonIngredients" :key="index">
+                <strong>{{ ing.amount }}</strong> {{ ing.item }}
+              </li>
+            </ul>
+          </div>
 
-        <h3 class="instructions-heading">Gör så här</h3>
+          <div class="recipe-instructions">
+            <h3 class="instructions-heading">Gör så här</h3>
 
-<div class="instructions-box">
-  <p>{{ instructionsStep1 }}</p>
-</div>
+            <div class="instructions-box">
+              <p>{{ instructionsStep1 }}</p>
+            </div>
 
-<div class="instructions-box">
-  <p>{{ instructionsStep2 }}</p>
-</div>
+            <div class="instructions-box">
+              <p>{{ instructionsStep2 }}</p>
+            </div>
 
-<div class="instructions-box">
-  <p>{{ instructionsStep3 }}</p>
-</div>
+            <div class="instructions-box">
+              <p>{{ instructionsStep3 }}</p>
+            </div>
+          </div>
         </section>
       </div>
   `

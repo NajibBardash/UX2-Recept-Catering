@@ -37,3 +37,25 @@
     height: 47px;
     width: 85%;
 }
+
+.details-arrow-down {
+    position: relative;
+    height: 12px;
+    width: 19px;
+    top: 2px;
+    left: 97%;
+}
+
+.details-arrow-up {
+    position: relative;
+    height: 12px;
+    width: 19px;
+    top: 0px;
+    left: 97%;
+}
+
+.recipe-variations-icon {
+    position: relative;
+    height: 40px;
+    width: 60%;
+}
