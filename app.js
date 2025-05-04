@@ -128,11 +128,23 @@ const app = {
 
     toggleRecipes() {
       this.seeRecipes = !this.seeRecipes;
+      this.$nextTick(() => {
+        setTimeout(() => {
+          const el = document.querySelector('.app-container');
+          if (el) el.scrollTop = 0;
+        }, 0);
+      });
     },
 
     toggleRecipeDetails() {
       this.seeRecipes = !this.seeRecipes;
       this.recipeDetails = !this.recipeDetails;
+      this.$nextTick(() => {
+        setTimeout(() => {
+          const el = document.querySelector('.app-container');
+          if (el) el.scrollTop = 0;
+        }, 0);
+      });
     },
 
     addSearchTextAsChip() {
@@ -148,13 +160,13 @@ const app = {
 
     decreasePortion() {
       if (this.portionSpinner > 1) {
-        this.portionSpinner --;
+        this.portionSpinner--;
       }
     },
 
     increasePortion() {
       if (this.portionSpinner < 300) {
-        this.portionSpinner ++;
+        this.portionSpinner++;
       }
     }
   },
