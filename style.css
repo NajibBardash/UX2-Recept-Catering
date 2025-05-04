@@ -79,6 +79,10 @@ body {
   display: flex;
 }
 
+.info-icon:hover {
+  cursor: help;
+}
+
 .chip-container {
   display: flex;
   flex-wrap: wrap;
