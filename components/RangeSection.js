@@ -7,6 +7,7 @@ export default {
     },
 
     props: {
+        header: String,
         title: String,
         sectionClass: String,
         min: {
@@ -62,7 +63,13 @@ export default {
 
     template: `
       <section :class="sectionClass">
-        <h2>{{ title }}</h2>
+        <h2>{{ header }}
+          <img src="assets/info-icon.png" 
+            alt="info" 
+            class="info-icon-price"
+            :title="title"
+          >
+        </h2>
         <div id="min-max">
             <span>{{ minAmount }} kr</span>
             <span>{{ maxAmount }} kr</span>

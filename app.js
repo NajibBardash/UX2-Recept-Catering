@@ -55,6 +55,7 @@ const app = {
 
       range: {
         header: 'Pris per portion',
+        title: 'Dra för att välja prisintervall',
         sectionClass: 'range-section'
       },
 
@@ -189,13 +190,13 @@ const app = {
 
         <header v-if="!recipeDetails" class="topBar">
           <div class="search-bar">
-          <input
-            type="text"
-            placeholder="Sökfilter"
-            minlength="1"
-            maxlength="20"
-            v-model="searchText"
-           @keydown.enter="addSearchTextAsChip"
+            <input
+              type="text"
+              placeholder="Sökfilter"
+              minlength="1"
+              maxlength="20"
+              v-model="searchText"
+              @keydown.enter="addSearchTextAsChip"
             />
               <button @click="addSearchTextAsChip">+</button>
           </div>
@@ -222,7 +223,7 @@ const app = {
         </header>
 
         <main v-if="!seeRecipes && !recipeDetails" class="content">
-          <h2>SNABB FILTRERING</h2>
+          <h2 class="content-header">SNABB FILTRERING</h2>
           <chip-section
             v-for="(section, index) in sections"
             :key="index"
@@ -241,6 +242,7 @@ const app = {
 
           <range-section
             :header="range.header"
+            :title="range.title"
             :section-class="range.sectionClass"
           />
 
